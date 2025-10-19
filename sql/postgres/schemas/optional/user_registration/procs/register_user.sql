@@ -1,6 +1,7 @@
 create or replace procedure register_user(
-    id uuid,
-    email common.email
+    id registrations.id%type,
+    email registrations.email%type,
+    token registrations.token%type
 )
 language plpgsql
 as $$
@@ -13,7 +14,7 @@ begin
     ) values (
         id,
         email,
-        encode(gen_random_bytes(32), 'hex'),
+        token,
         false
     );
 end

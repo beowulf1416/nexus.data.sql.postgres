@@ -1,5 +1,5 @@
 create or replace procedure get_details(
-    token text
+    token registrations.token%type
 )
 language plpgsql
 as $$
