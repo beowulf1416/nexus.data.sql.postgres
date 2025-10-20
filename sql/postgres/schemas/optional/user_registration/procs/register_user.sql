@@ -1,7 +1,7 @@
 create or replace procedure register_user(
-    id registrations.id%type,
-    email registrations.email%type,
-    token registrations.token%type
+    p_register_id registrations.id%type,
+    p_email registrations.email%type,
+    p_token registrations.token%type
 )
 language plpgsql
 as $$
@@ -12,9 +12,9 @@ begin
         token,
         verified
     ) values (
-        id,
-        email,
-        token,
+        p_register_id,
+        p_email,
+        p_token,
         false
     );
 end
