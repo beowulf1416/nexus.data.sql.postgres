@@ -22,4 +22,4 @@ begin
 end
 $$;
 
-comment on function fetch_registration_details_by_token is 'get the details of a user registration by token if not yet verified';
+comment on function fetch_registration_details_by_token is 'fetch the details of a user registration by token if not yet verified';
