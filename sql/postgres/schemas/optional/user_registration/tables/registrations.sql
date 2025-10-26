@@ -9,3 +9,10 @@ alter table registrations
 add constraint pk_registrations
 primary key (id)
 ;
+
+
+create unique index u_registrations_1
+on registrations (email)
+where
+    verified = false
+;
