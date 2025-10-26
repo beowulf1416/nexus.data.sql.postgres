@@ -1,5 +1,7 @@
 create table users (
     id uuid not null,
+    active boolean not null default false,
+    created_ts timestamp not null default now(),
     first_name varchar(100),
     middle_name varchar(100),
     last_name varchar(100),

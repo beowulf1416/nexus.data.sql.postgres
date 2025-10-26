@@ -9,6 +9,11 @@ primary key (user_id)
 ;
 
 alter table user_auth
+add constraint u_user_auth_1
+unique (user_id, auth_type_id)
+;
+
+alter table user_auth
 add constraint fk_user_auth_1
 foreign key (auth_type_id) references auth.auth_types(id)
 on delete restrict
