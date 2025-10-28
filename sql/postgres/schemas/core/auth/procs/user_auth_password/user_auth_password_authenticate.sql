@@ -1,5 +1,5 @@
 create or replace function user_auth_password_authenticate(
-    p_user_id user_auth_password.user_id%type,
+    p_email user_auth_password.email%type,
     p_pw user_auth_password.pw%type
 )
 returns boolean
@@ -16,7 +16,7 @@ begin
         join users.users b
             on a.user_id = b.id
     where
-        a.user_id = p_user_id
+        a.email = p_email
         and b.active = true
     ;
 
