@@ -1,5 +1,5 @@
 create or replace procedure user_emails_add(
-    p_user_id user_emails.id%type,
+    p_user_id user_emails.user_id%type,
     p_email user_emails.email%type
 )
 language plpgsql
