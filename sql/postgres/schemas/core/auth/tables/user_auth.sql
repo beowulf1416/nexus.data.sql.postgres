@@ -1,5 +1,7 @@
 create table user_auth (
     user_id uuid not null,
+    active boolean not null default false,
+    created_ts timestamp not null default now(),
     auth_type_id smallint not null
 );
 

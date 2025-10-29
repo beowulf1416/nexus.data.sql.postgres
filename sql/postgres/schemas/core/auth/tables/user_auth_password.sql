@@ -1,5 +1,7 @@
 create table user_auth_password (
     user_id uuid not null,
+    active boolean not null default false,
+    created_ts timestamp not null default now(),
     email common.email not null,
     pw text not null
 );

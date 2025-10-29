@@ -13,11 +13,18 @@ begin
         into strict
         t_authentic
     from auth.user_auth_password a
-        join users.users b
-            on a.user_id = b.id
+        join auth.user_auth b
+            on a.user_id = b.user_id
+        join users.users c
+            on a.user_id = c.id
     where
         a.email = p_email
+        -- the user's password is enabled
+        and a.active = true
+        -- the authentication method for this user is enabled
         and b.active = true
+        -- the user's record is enabled
+        and c.active = true
     ;
 
     return t_authentic;
