@@ -1,7 +1,7 @@
 create table users (
     id uuid not null,
     active boolean not null default false,
-    created_ts timestamp not null default now(),
+    created_ts timestamp with time zone not null default (now() at time zone 'utc'),
     first_name varchar(100),
     middle_name varchar(100),
     last_name varchar(100),
