@@ -22,6 +22,7 @@ create extension if not exists "uuid-ossp";
 
 
 -- procs
+\ir schemas/core/common/procs.sql
 \ir schemas/core/users/procs.sql
 \ir schemas/core/tenants/procs.sql
 \ir schemas/core/auth/procs.sql
@@ -29,5 +30,6 @@ create extension if not exists "uuid-ossp";
 
 
 -- init
+\ir schemas/core/common/init.sql
 \ir schemas/core/tenants/init.sql
 \ir schemas/core/auth/init.sql
