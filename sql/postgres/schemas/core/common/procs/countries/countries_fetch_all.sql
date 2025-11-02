@@ -1,4 +1,4 @@
-create or replace function country_fetch_all()
+create or replace function countries_fetch_all()
 returns table (
     official_name_en countries.official_name_en%type,
     iso_3166_1_alpha_2 countries.iso_3166_1_alpha_2%type,
@@ -30,4 +30,4 @@ end
 $$;
 
 
-comment on function country_fetch_all is 'fetch all country records';
+comment on function countries_fetch_all is 'fetch all country records';

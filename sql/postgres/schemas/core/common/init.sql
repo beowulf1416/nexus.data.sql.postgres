@@ -2,6 +2,7 @@ set schema 'common';
 
 
 insert into genders (id, name) values
+(0, ''),
 (1, 'male'),
 (2, 'female')
 ;
