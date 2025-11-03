@@ -3,8 +3,8 @@ create extension if not exists "uuid-ossp";
 
 -- schemas
 \ir schemas/core/common/schema.sql
-\ir schemas/core/tenants/schema.sql
 \ir schemas/core/users/schema.sql
+\ir schemas/core/tenants/schema.sql
 \ir schemas/core/auth/schema.sql
 
 
@@ -13,8 +13,8 @@ create extension if not exists "uuid-ossp";
 
 -- tables
 \ir schemas/core/common/tables.sql
-\ir schemas/core/tenants/tables.sql
 \ir schemas/core/users/tables.sql
+\ir schemas/core/tenants/tables.sql
 \ir schemas/core/auth/tables.sql
 
 
@@ -23,8 +23,8 @@ create extension if not exists "uuid-ossp";
 
 -- procs
 \ir schemas/core/common/procs.sql
-\ir schemas/core/users/procs.sql
 \ir schemas/core/tenants/procs.sql
+\ir schemas/core/users/procs.sql
 \ir schemas/core/auth/procs.sql
 \ir schemas/optional/user_registration/procs.sql
 
