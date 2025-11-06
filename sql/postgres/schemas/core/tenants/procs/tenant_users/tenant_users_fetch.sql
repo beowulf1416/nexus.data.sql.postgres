@@ -5,6 +5,7 @@ create or replace function tenant_users_fetch(
 returns table (
     user_id tenant_users.user_id%type,
     active tenant_users.active%type,
+    created tenant_users.created_ts%type,
     first_name users.users.first_name%type,
     middle_name users.users.middle_name%type,
     last_name users.users.last_name%type,
@@ -19,6 +20,7 @@ begin
     select
         a.user_id,
         a.active,
+        a.created_ts,
         b.first_name,
         b.middle_name,
         b.last_name,
