@@ -9,6 +9,9 @@ create extension if not exists "uuid-ossp";
 
 
 \ir schemas/optional/user_registration/schema.sql
+\ir schemas/optional/organizations/schema.sql
+\ir schemas/optional/employees/schema.sql
+\ir schemas/optional/mm/schema.sql
 \ir schemas/optional/work/schema.sql
 
 -- tables
@@ -19,6 +22,9 @@ create extension if not exists "uuid-ossp";
 
 
 \ir schemas/optional/user_registration/tables.sql
+\ir schemas/optional/organizations/tables.sql
+\ir schemas/optional/employees/tables.sql
+\ir schemas/optional/mm/tables.sql
 \ir schemas/optional/work/tables.sql
 
 
@@ -34,3 +40,6 @@ create extension if not exists "uuid-ossp";
 \ir schemas/core/common/init.sql
 \ir schemas/core/tenants/init.sql
 \ir schemas/core/auth/init.sql
+
+
+\ir schemas/optional/employees/init.sql
