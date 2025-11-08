@@ -23,5 +23,5 @@ unique (tenant_id, project_id)
 alter table projects
 add constraint fK_projects_1
 foreign key (tenant_id)
-references tenants.tenants (tenant_id)
+references tenants.tenants (id)
 ;

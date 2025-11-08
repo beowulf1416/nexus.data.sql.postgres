@@ -24,7 +24,7 @@ unique (tenant_id, project_id, task_id)
 alter table tasks
 add constraint fk_tasks_1
 foreign key (tenant_id)
-references tenants.tenants (tenant_id)
+references tenants.tenants (id)
 on delete restrict
 ;
 

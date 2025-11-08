@@ -1,1 +1,1 @@
-set schema work;
+create schema work;
