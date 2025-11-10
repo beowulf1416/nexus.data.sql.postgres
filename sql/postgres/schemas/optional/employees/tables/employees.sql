@@ -8,11 +8,18 @@ create table employees (
 
 
 comment on table employees is 'employees';
+comment on column employees.user_id is 'employee id';
 
 
 alter table employees
 add constraint pk_employees
-primary key (tenant_id, user_id)
+primary key (user_id)
+;
+
+
+alter table employees
+add constraint u_employees_1
+unique (tenant_id, user_id)
 ;
 
 
