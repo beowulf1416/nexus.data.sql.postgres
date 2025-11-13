@@ -9,6 +9,7 @@ begin
         active = p_active
     where
         id = p_tenant_id
+        and id <> uuid_nil()
     ;
 end
 $$;
