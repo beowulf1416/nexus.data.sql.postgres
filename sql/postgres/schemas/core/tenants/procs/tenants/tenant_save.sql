@@ -6,6 +6,7 @@ create or replace procedure tenant_save(
 language plpgsql
 as $$
 begin
+    
     insert into tenants.tenants (
         id,
         name,

@@ -11,3 +11,6 @@ set schema 'tenants';
 \ir procs/tenant_users/tenant_users_fetch.sql
 \ir procs/tenant_users/tenant_user_save.sql
 \ir procs/tenant_users/tenant_users_assign.sql
+
+
+\ir procs/roles/role_save.sql
