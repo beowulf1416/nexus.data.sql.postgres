@@ -9,7 +9,8 @@ returns table (
     middle_name users.middle_name%type,
     last_name users.last_name%type,
     prefix users.prefix%type,
-    suffix users.suffix%type
+    suffix users.suffix%type,
+    email user_emails.email%type
 )
 language plpgsql
 as $$
@@ -23,7 +24,8 @@ begin
         a.middle_name,
         a.last_name,
         a.prefix,
-        a.suffix
+        a.suffix,
+        b.email
     from users.users a
         join users.user_emails b
             on a.id = b.user_id
