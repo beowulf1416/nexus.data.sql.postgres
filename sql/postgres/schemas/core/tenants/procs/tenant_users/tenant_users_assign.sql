@@ -10,8 +10,10 @@ begin
         user_id
     )
     select
-        unnest(tenant_ids),
-        unnest(user_ids)
+        a.tenant_id,
+        b.user_id
+    from unnest(tenant_ids) a (tenant_id)
+        cross join unnest(user_ids) b (user_id)
     on conflict (tenant_id, user_id)
     do nothing
     ;
