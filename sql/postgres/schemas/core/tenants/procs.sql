@@ -14,3 +14,4 @@ set schema 'tenants';
 
 
 \ir procs/roles/role_save.sql
+\ir procs/roles/roles_fetch.sql
