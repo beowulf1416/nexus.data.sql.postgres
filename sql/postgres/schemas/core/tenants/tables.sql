@@ -6,3 +6,4 @@ set schema 'tenants';
 
 \ir tables/roles.sql
 \ir tables/role_users.sql
+\ir tables/role_permissions.sql
