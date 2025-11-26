@@ -1,15 +1,23 @@
 create or replace procedure role_permissions_remove (
-    p_role_id role_permissions.role_id%type,
-    p_permission_id role_permissions.permission_id%type
+    p_role_ids uuid[],
+    p_permission_ids int[]
 )
 language plpgsql
 as $$
 begin
+    with cte as (
+        select
+            b.role_id,
+            c.permission_id
+        from unnest(p_role_ids) b (role_id)
+            cross join unnest(p_permission_ids) c (permission_id)
+    )
     delete
-    from tenants.role_permissions
+    from tenants.role_permissions a
+        using cte c
     where
-        role_id = p_role_id
-        and permission_id = p_permission_id
+        a.role_id = c.role_id
+        and a.permission_id = c.permission_id
     ;
 end
 $$;

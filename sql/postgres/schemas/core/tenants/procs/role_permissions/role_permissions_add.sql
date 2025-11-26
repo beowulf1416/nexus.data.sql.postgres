@@ -1,6 +1,6 @@
 create or replace procedure role_permissions_add (
-    p_role_id role_permissions.role_id%type,
-    p_permission_id role_permissions.permission_id%type
+    p_role_ids uuid[],
+    p_permission_ids int[]
 )
 language plpgsql
 as $$
@@ -8,11 +8,12 @@ begin
     insert into tenants.role_permissions (
         role_id,
         permission_id
-    ) values (
-        p_role_id,
-        p_permission_id
     )
-    on conflict do nothing
+    select
+        a.role_id,
+        b.permission_id
+    from unnest(p_role_ids) a (role_id)
+        cross join unnest(p_permission_ids) b (permission_id)
     ;
 end
 $$;

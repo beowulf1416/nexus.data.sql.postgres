@@ -1,5 +1,5 @@
 create or replace procedure role_users_add(
-    p_role_id role_users.role_id%type,
+    p_role_ids uuid[],
     p_user_ids uuid[]
 )
 language plpgsql
@@ -11,9 +11,10 @@ begin
         active
     )
     select
-        p_role_id,
-        a.user_id
-    from unnest(p_user_ids) a(user_id)
+        a.role_id,
+        b.user_id
+    from unnest(p_role_ids) a(role_id)
+        cross join unnest(p_user_ids) b(user_id)
     on conflict (role_id, user_id)
     do nothing
     ;
