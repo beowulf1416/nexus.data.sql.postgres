@@ -13,6 +13,7 @@ returns table (
     suffix users.users.suffix%type,
     email users.user_emails.email%type
 )
+language plpgsql
 as $$
 begin
     return query

@@ -12,7 +12,8 @@ begin
     )
     select
         a.role_id,
-        b.user_id
+        b.user_id,
+        true
     from unnest(p_role_ids) a(role_id)
         cross join unnest(p_user_ids) b(user_id)
     on conflict (role_id, user_id)
