@@ -1,3 +1,5 @@
+set search_path to permissions, public;
+
 create procedure create_test_accounts_1()
 language plpgsql
 as $$
@@ -11,14 +13,9 @@ declare
     permission_id_2 int;
 begin
     -- permissions
-    -- permission_id_1 := permissions.permission_id_from_name('tenant.save'::text);
-    -- permission_id_2 := permissions.permission_id_from_name('tenant.list');
-
-    select
-        *
-    from permissions.permission_id_from_name('tenant.save')
-    ;
-
+    permission_id_1 := permissions.permission_id_from_name('tenant.save');
+    permission_id_2 := permissions.permission_id_from_name('tenant.list');
+    
     user_id := public.gen_random_uuid();
 
     call users.user_save(
@@ -84,10 +81,10 @@ begin
         array[user_id]
     );
 
-    -- call tenants.role_permissions_add(
-    --     array[role_id_1],
-    --     array[permission_id_1, permission_id_2]
-    -- );
+    call tenants.role_permissions_add(
+        array[role_id_1],
+        array[permission_id_1, permission_id_2]
+    );
 
 
     -- tenant 2
