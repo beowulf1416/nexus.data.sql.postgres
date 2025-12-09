@@ -76,14 +76,37 @@ begin
         'tenant_1 role description'
     );
 
+    call tenants.role_set_active(
+        role_id_1,
+        true
+    );
+
     call tenants.role_users_add(
         array[role_id_1],
         array[user_id]
     );
 
+    call tenants.tenant_user_set_active(
+        tenant_id_1,
+        user_id,
+        true
+    );
+
     call tenants.role_permissions_add(
         array[role_id_1],
         array[permission_id_1, permission_id_2]
+    );
+
+    call tenants.role_permission_set_active(
+        role_id_1,
+        permission_id_1,
+        true
+    );
+
+    call tenants.role_permission_set_active(
+        role_id_1,
+        permission_id_2,
+        true
     );
 
 
