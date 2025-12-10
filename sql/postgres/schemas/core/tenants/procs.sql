@@ -22,6 +22,7 @@ set schema 'tenants';
 
 \ir procs/role_users/role_users_add.sql
 \ir procs/role_users/role_users_remove.sql
+\ir procs/role_users/role_user_set_active.sql
 
 \ir procs/role_permissions/role_permissions_add.sql
 \ir procs/role_permissions/role_permissions_remove.sql
