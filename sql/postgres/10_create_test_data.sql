@@ -11,10 +11,14 @@ declare
     role_id_2 uuid;
     permission_id_1 int;
     permission_id_2 int;
+    permission_id_3 int;
+    permission_id_4 int;
 begin
     -- permissions
     permission_id_1 := permissions.permission_id_from_name('tenant.save');
     permission_id_2 := permissions.permission_id_from_name('tenant.list');
+    permission_id_3 := permissions.permission_id_from_name('tenant.users.list');
+    permission_id_4 := permissions.permission_id_from_name('tenant.roles.list');
     
     user_id := public.gen_random_uuid();
 
@@ -94,18 +98,12 @@ begin
 
     call tenants.role_permissions_add(
         array[role_id_1],
-        array[permission_id_1, permission_id_2]
+        array[permission_id_1,permission_id_2,permission_id_3,permission_id_4]
     );
 
     call tenants.role_permission_set_active(
         role_id_1,
-        permission_id_1,
-        true
-    );
-
-    call tenants.role_permission_set_active(
-        role_id_1,
-        permission_id_2,
+        array[permission_id_1,permission_id_2,permission_id_3,permission_id_4],
         true
     );
 

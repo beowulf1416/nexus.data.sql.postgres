@@ -1,6 +1,7 @@
 create or replace procedure role_permission_set_active(
     p_role_id role_permissions.role_id%type,
-    p_permission_id role_permissions.permission_id%type,
+    -- p_permission_id role_permissions.permission_id%type,
+    p_permission_ids int[],
     p_active role_permissions.active%type
 )
 language plpgsql
@@ -10,7 +11,7 @@ begin
         active = p_active
     where
         role_id = p_role_id
-        and permission_id = p_permission_id
+        and permission_id = any(p_permission_ids)
     ;
 end
 $$;
