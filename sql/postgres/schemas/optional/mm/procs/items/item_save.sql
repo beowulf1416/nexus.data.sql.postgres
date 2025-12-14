@@ -25,7 +25,7 @@ begin
         p_description,
         p_sku,
         p_upc
-    ) conflict (item_id) do
+    ) on conflict (item_id) do
     update set
         name = p_name,
         description = p_description,
