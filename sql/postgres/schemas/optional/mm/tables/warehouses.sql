@@ -4,7 +4,13 @@ create table warehouses (
     active bool not null,
     created_ts timestamp with time zone not null default (now() at time zone 'utc'),
     name varchar(200) not null,
-    description text
+    description text,
+
+    street text,
+    city text,
+    state text,
+    zip_code varchar(100),
+    country_id int not null
 );
 
 
@@ -27,5 +33,13 @@ alter table warehouses
 add constraint fk_warehouses_1
 foreign key (tenant_id)
 references tenants.tenants (id)
+on delete restrict
+;
+
+
+alter table warehouses
+add constraint fk_warehouses_2
+foreign key (country_id)
+references common.countries (iso_3166_1_numeric)
 on delete restrict
 ;

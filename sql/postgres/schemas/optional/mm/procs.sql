@@ -10,6 +10,7 @@ set schema 'mm';
 \ir procs/warehouses/warehouse_set_active.sql
 \ir procs/warehouses/warehouse_fetch.sql
 \ir procs/warehouses/warehouse_fetch_by_id.sql
+\ir procs/warehouses/warehouse_fetch_by_name.sql
 
 
 \ir procs/locations/location_save.sql
