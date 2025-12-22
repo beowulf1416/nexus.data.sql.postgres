@@ -9,11 +9,13 @@ begin
     insert into files.folders (
         tenant_id,
         folder_id,
-        active
+        active,
+        name
     ) values (
         p_tenant_id,
         p_folder_id,
-        true
+        true,
+        p_name
     );
 end
 $$;

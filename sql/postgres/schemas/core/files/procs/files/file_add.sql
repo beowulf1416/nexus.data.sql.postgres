@@ -1,7 +1,7 @@
 create or replace procedure file_add(
     p_tenant_id files.tenant_id%type,
-    p_file_id files.file_add%type,
-    p_folder_id files.folder_id%type,
+    p_file_id files.file_id%type,
+    p_folder_id folder_files.folder_id%type,
     p_name files.name%type
 )
 language plpgsql
