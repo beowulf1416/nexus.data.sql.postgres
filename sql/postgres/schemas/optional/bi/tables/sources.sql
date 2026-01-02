@@ -4,7 +4,7 @@ create table sources (
     created_ts timestamp with time zone default 'utc',
     tenant_id uuid not null,
     name varchar(100) not null,
-    uri varchar(500) not null
+    cn text not null
 );
 
 
