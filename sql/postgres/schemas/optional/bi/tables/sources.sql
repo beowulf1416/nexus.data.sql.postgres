@@ -1,7 +1,7 @@
 create table sources (
     id uuid not null,
     active boolean not null,
-    created_ts timestamp with time zone default 'utc',
+    created_ts timestamp with time zone not null default (now() at time zone 'utc'),
     tenant_id uuid not null,
     name varchar(100) not null,
     cn text not null

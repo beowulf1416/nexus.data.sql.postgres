@@ -1,7 +1,7 @@
 create or replace function source_types_fetch()
 returns table (
     id source_types.id%type,
-    active source_types.active%type
+    active source_types.active%type,
     name source_types.name%type
 )
 language plpgsql

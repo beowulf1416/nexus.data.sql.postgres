@@ -21,7 +21,7 @@ begin
         p_cn
     )
     on conflict (id)
-    update set
+    do update set
         cn = p_cn
     where
         id = p_cn
