@@ -5,21 +5,25 @@ language plpgsql
 as $$
 declare
     user_id uuid;
+    tenant_id_default uuid;
     tenant_id_1 uuid;
     tenant_id_2 uuid;
+    role_id_default uuid;
     role_id_1 uuid;
     role_id_2 uuid;
     permission_id_1 int;
     permission_id_2 int;
     permission_id_3 int;
     permission_id_4 int;
+    permission_id_5 int;
 begin
     -- permissions
     permission_id_1 := permissions.permission_id_from_name('tenant.save');
     permission_id_2 := permissions.permission_id_from_name('tenant.list');
     permission_id_3 := permissions.permission_id_from_name('tenant.users.list');
     permission_id_4 := permissions.permission_id_from_name('tenant.roles.list');
-    
+    permission_id_5 := permissions.permission_id_from_name('files.upload');
+
     user_id := public.gen_random_uuid();
 
     call users.user_save(
@@ -50,6 +54,42 @@ begin
     call auth.user_auth_password_set_active(
         user_id,
         true
+    );
+
+    -- default tenant
+    tenant_id_default := tenants.tenant_default_id();
+
+    call tenants.tenant_user_save(
+        tenant_id_default,
+        user_id
+    );
+
+    role_id_default := public.gen_random_uuid();call tenants.role_save(
+        tenant_id_default,
+        role_id_default,
+        'tenant_1_role',
+        'tenant_1 role description'
+    );
+
+    call tenants.role_set_active(
+        role_id_default,
+        true
+    );
+
+    call tenants.role_users_add(
+        array[role_id_default],
+        array[user_id]
+    );
+
+    call tenants.tenant_user_set_active(
+        tenant_id_default,
+        user_id,
+        true
+    );
+
+    call tenants.role_permissions_add(
+        array[role_id_default],
+        array[permission_id_1, permission_id_2, permission_id_3, permission_id_4, permission_id_5]
     );
 
     -- tenant 1
@@ -98,12 +138,12 @@ begin
 
     call tenants.role_permissions_add(
         array[role_id_1],
-        array[permission_id_1,permission_id_2,permission_id_3,permission_id_4]
+        array[permission_id_1, permission_id_2, permission_id_3, permission_id_4, permission_id_5]
     );
 
     call tenants.role_permission_set_active(
         role_id_1,
-        array[permission_id_1,permission_id_2,permission_id_3,permission_id_4],
+        array[permission_id_1, permission_id_2, permission_id_3, permission_id_4, permission_id_5],
         true
     );
 
