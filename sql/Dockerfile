@@ -8,8 +8,10 @@ LABEL maintainer="Ferd Tomale<beowulf1416@gmail.com>"
 
 EXPOSE 5432
 
-RUN <<EOT
-    mkdir -p /docker-entrypoint-initdb.d
-EOT
+#RUN <<EOT
+#    mkdir -p /docker-entrypoint-initdb.d
+#EOT
+
+#CMD ["mkdir", "-p", "/docker-entrypoint-initdb.d"]
 
 COPY ./postgres /docker-entrypoint-initdb.d/
