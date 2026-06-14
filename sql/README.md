@@ -30,3 +30,6 @@ podman exec -it nexus.db psql -U app_user -d eas
 
 
 podman start nexus.db
+
+
+psql -U app_user -h localhost eas
