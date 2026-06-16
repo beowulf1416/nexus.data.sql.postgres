@@ -17,6 +17,7 @@ declare
     permission_id_4 int;
     permission_id_5 int;
     permission_id_6 int;
+    permission_id_7 int;
 begin
     -- permissions
     permission_id_1 := permissions.permission_id_from_name('tenant.save');
@@ -25,6 +26,7 @@ begin
     permission_id_4 := permissions.permission_id_from_name('tenant.roles.list');
     permission_id_5 := permissions.permission_id_from_name('files.upload');
     permission_id_6 := permissions.permission_id_from_name('tenant.fetch');
+    permission_id_7 := permissions.permission_id_from_name('tenant.set.active');
 
     user_id := public.gen_random_uuid();
 
@@ -91,7 +93,29 @@ begin
 
     call tenants.role_permissions_add(
         array[role_id_default],
-        array[permission_id_1, permission_id_2, permission_id_3, permission_id_4, permission_id_5, permission_id_6]
+        array[
+        	permission_id_1,
+         	permission_id_2,
+          	permission_id_3,
+          	permission_id_4,
+          	permission_id_5,
+          	permission_id_6,
+          	permission_id_7
+        ]
+    );
+
+    call tenants.role_permission_set_active(
+        role_id_default,
+        array[
+        	permission_id_1,
+         	permission_id_2,
+          	permission_id_3,
+          	permission_id_4,
+          	permission_id_5,
+          	permission_id_6,
+          	permission_id_7
+        ],
+        true
     );
 
     -- tenant 1
