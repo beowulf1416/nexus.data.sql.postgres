@@ -1,3 +1,6 @@
+\ir ./test_data/01_tenant_01.sql
+\ir ./test_data/02_user_01.sql
+
 set search_path to permissions, public;
 
 create procedure create_test_accounts_1()
@@ -70,7 +73,9 @@ begin
         user_id
     );
 
-    role_id_default := public.gen_random_uuid();call tenants.role_save(
+    role_id_default := public.gen_random_uuid();
+
+    call tenants.role_save(
         tenant_id_default,
         role_id_default,
         'tenant_1_role',
