@@ -22,6 +22,7 @@ declare
     permission_id_6 int;
     permission_id_7 int;
     permission_id_8 int;
+    permission_id_9 int;
 begin
     -- permissions
     permission_id_1 := permissions.permission_id_from_name('tenant.save');
@@ -32,6 +33,7 @@ begin
     permission_id_6 := permissions.permission_id_from_name('tenant.fetch');
     permission_id_7 := permissions.permission_id_from_name('tenant.set.active');
     permission_id_8 := permissions.permission_id_from_name('tenant.roles.save');
+    permission_id_9 := permissions.permission_id_from_name('tenant.role.assign.permission');
 
     user_id := public.gen_random_uuid();
 
@@ -108,7 +110,8 @@ begin
           	permission_id_5,
           	permission_id_6,
           	permission_id_7,
-           	permission_id_8
+           	permission_id_8,
+            permission_id_9
         ]
     );
 
@@ -122,7 +125,8 @@ begin
           	permission_id_5,
           	permission_id_6,
           	permission_id_7,
-           	permission_id_8
+           	permission_id_8,
+            permission_id_9
         ],
         true
     );
