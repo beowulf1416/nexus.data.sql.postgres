@@ -6,6 +6,8 @@ declare
 	v_tenant_id uuid;
 	v_role_ids uuid[];
 	v_permission_ids int[];
+	v_user_id uuid;
+	v_user_ids uuid[];
 begin
 	v_role_id := public.gen_random_uuid();
 
@@ -45,6 +47,18 @@ begin
 	where
 		role_id = v_role_id
 	;
+
+	-- assign user to role
+	select
+		a.user_id into v_user_id
+	from users.users_fetch_by_email('user_01@test.com') a
+	;
+
+	v_user_ids := array_append(v_user_ids, v_user_id);
+	call tenants.role_users_add(
+		v_role_ids,
+		v_user_ids
+	);
 end;
 $$;
 
