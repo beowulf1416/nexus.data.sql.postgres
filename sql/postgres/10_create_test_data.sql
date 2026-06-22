@@ -1,5 +1,7 @@
 \ir ./test_data/01_tenant_01.sql
 \ir ./test_data/02_user_01.sql
+\ir ./test_data/03_role_01.sql
+
 
 set search_path to permissions, public;
 
