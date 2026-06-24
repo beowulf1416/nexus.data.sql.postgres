@@ -14,3 +14,5 @@ alter table users
 add constraint pk_users
 primary key (id)
 ;
+
+comment on table users is 'table of users';
