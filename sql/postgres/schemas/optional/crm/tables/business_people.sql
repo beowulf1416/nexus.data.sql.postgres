@@ -13,7 +13,7 @@ create table business_people (
     references businesses (business_id)
     on delete restrict,
 
-    contraint fk_business_people_2
+    constraint fk_business_people_2
     foreign key (people_id)
     references people (people_id)
     on delete restrict

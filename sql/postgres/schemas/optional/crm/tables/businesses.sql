@@ -12,7 +12,7 @@ create table businesses (
     primary key (business_id),
 
     constraint u_businesses_1
-    unique key (name),
+    unique (name),
 
     constraint fk_businesses_1
     foreign key (tenant_id)
