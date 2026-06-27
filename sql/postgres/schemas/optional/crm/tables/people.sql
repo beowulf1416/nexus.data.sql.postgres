@@ -11,7 +11,7 @@ create table people (
     prefix varchar(100),
     suffix varchar(100),
 
-    gender smallint,
+    gender_id smallint,
 
     constraint pk_people
     primary key (people_id),
@@ -19,6 +19,11 @@ create table people (
     constraint fk_people_1
     foreign key (tenant_id)
     references tenants.tenants (id)
+    on delete restrict,
+
+    constraint fk_people_2
+    foreign key (gender_id)
+    references common.genders (gender_id)
     on delete restrict,
 
     constraint chk_people_1

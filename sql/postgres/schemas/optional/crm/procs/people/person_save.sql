@@ -6,7 +6,7 @@ create or replace procedure person_save(
     p_last_name crm.people.last_name%type,
     p_prefix crm.people.prefix%type,
     p_suffix crm.people.suffix%type,
-    p_gender crm.people.gender%type
+    p_gender crm.people.gender_id%type
 )
 language plpgsql
 as $$
