@@ -1,6 +1,6 @@
 create or replace function genders_fetch_all()
 returns table (
-    id genders.id%type,
+    id genders.gender_id%type,
     name genders.name%type
 )
 language plpgsql
@@ -8,7 +8,7 @@ as $$
 begin
     return query
     select
-        a.id,
+        a.gender_id,
         a.name
     from common.genders a
     ;

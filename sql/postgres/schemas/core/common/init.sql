@@ -1,14 +1,14 @@
 set schema 'common';
 
 
-insert into genders (id, name) values
+insert into genders (gender_id, name) values
 (0, ''),
 (1, 'male'),
 (2, 'female')
 ;
 
 
-insert into dimensions(id, name) values
+insert into dimensions(dimension_id, name) values
 (1, 'length'),
 (2, 'area'),
 (3, 'volume'),
@@ -33,7 +33,7 @@ alter table if exists common.currencies
 alter column id set default nextval('seq_currency')
 ;
 
-\copy currencies (currency, unit_text, symbol) from '/docker-entrypoint-initdb.d/csv/currencies.csv' with delimiter ',' csv header quote '"'; 
+\copy currencies (currency, unit_text, symbol) from '/docker-entrypoint-initdb.d/csv/currencies.csv' with delimiter ',' csv header quote '"';
 
 alter table if exists currencies
 alter column id drop default
