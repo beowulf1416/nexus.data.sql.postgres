@@ -11,6 +11,8 @@ create table people (
     prefix varchar(100),
     suffix varchar(100),
 
+    gender smallint,
+
     constraint pk_people
     primary key (people_id),
 
