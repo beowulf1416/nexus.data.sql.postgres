@@ -24,6 +24,6 @@ unique (dimension_id, name, symbol)
 alter table uom
 add constraint fk_uom_1
 foreign key (dimension_id)
-references dimensions (id)
+references dimensions (dimension_id)
 on delete restrict
 ;
