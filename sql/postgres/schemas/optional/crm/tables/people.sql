@@ -27,7 +27,7 @@ create table people (
     on delete restrict,
 
     constraint chk_people_1
-    check ( concat(first_name, middle_name, last_name) is null )
+    check ( concat(first_name, middle_name, last_name) is not null )
 );
 
 comment on table people is 'table of people records';

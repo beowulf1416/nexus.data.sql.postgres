@@ -6,7 +6,7 @@ create or replace procedure person_save(
     p_last_name crm.people.last_name%type,
     p_prefix crm.people.prefix%type,
     p_suffix crm.people.suffix%type,
-    p_gender crm.people.gender_id%type
+    p_gender_id crm.people.gender_id%type
 )
 language plpgsql
 as $$
@@ -19,7 +19,7 @@ begin
 		last_name,
 		prefix,
 		suffix,
-		gender
+		gender_id
 	)
 	values (
 		p_tenant_id,
@@ -29,7 +29,7 @@ begin
 		p_last_name,
 		p_prefix,
 		p_suffix,
-		p_gender
+		p_gender_id
 	)
 	on conflict (people_id) do
 	update set
@@ -39,7 +39,7 @@ begin
 		last_name = p_last_name,
 		prefix = p_prefix,
 		suffix = p_suffix,
-		gender = p_gender
+		gender_id = p_gender_id
 	;
 end
 $$;
