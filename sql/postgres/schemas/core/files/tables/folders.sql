@@ -19,8 +19,6 @@ primary key (folder_id)
 alter table folders
 add constraint fk_folders_1
 foreign key (tenant_id)
-references tenants.tenants (id)
+references tenants.tenants (tenant_id)
 on delete restrict
 ;
-
-

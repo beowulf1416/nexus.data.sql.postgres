@@ -25,6 +25,6 @@ unique (tenant_id, name)
 alter table tags
 add constraint fk_tags_1
 foreign key (tenant_id)
-references tenants.tenants (id)
+references tenants.tenants (tenant_id)
 on delete restrict
 ;

@@ -18,7 +18,7 @@ create table people (
 
     constraint fk_people_1
     foreign key (tenant_id)
-    references tenants.tenants (id)
+    references tenants.tenants (tenant_id)
     on delete restrict,
 
     constraint fk_people_2

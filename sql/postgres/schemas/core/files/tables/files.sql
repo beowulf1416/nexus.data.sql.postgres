@@ -20,7 +20,7 @@ primary key (file_id)
 alter table files
 add constraint fk_files_1
 foreign key (tenant_id)
-references tenants.tenants (id)
+references tenants.tenants (tenant_id)
 on delete restrict
 ;
 

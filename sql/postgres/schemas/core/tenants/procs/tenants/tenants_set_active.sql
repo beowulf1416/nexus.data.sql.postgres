@@ -8,8 +8,8 @@ begin
     update tenants.tenants set
         active = p_active
     where
-        id = any (tenant_ids)
-        and id <> uuid_nil()
+        tenant_id = any (tenant_ids)
+        and tenant_id <> uuid_nil()
     ;
 end
 $$;

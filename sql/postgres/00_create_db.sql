@@ -8,7 +8,7 @@ create extension if not exists "uuid-ossp";
 \ir schemas/core/tenants/schema.sql
 \ir schemas/core/auth/schema.sql
 \ir schemas/core/files/schema.sql
-\ir schemas/core/documents/schema.sql
+-- \ir schemas/core/documents/schema.sql
 
 
 \ir schemas/optional/crm/schema.sql
@@ -26,7 +26,7 @@ create extension if not exists "uuid-ossp";
 \ir schemas/core/tenants/tables.sql
 \ir schemas/core/auth/tables.sql
 \ir schemas/core/files/tables.sql
-\ir schemas/core/documents/tables.sql
+-- \ir schemas/core/documents/tables.sql
 
 
 \ir schemas/optional/crm/tables.sql

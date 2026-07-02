@@ -34,6 +34,6 @@ unique (tenant_id, name)
 alter table items
 add constraint fk_items_1
 foreign key (tenant_id)
-references tenants.tenants (id)
+references tenants.tenants (tenant_id)
 on delete restrict
 ;

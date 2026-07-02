@@ -25,6 +25,6 @@ unique (tenant_id, org_id)
 alter table organizations
 add constraint fk_organizations_1
 foreign key (tenant_id)
-references tenants.tenants (id)
+references tenants.tenants (tenant_id)
 on delete restrict
 ;

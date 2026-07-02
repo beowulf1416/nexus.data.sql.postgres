@@ -2,7 +2,7 @@ create or replace function tenants_fetch(
     p_filter varchar(100)
 )
 returns table (
-    tenant_id tenants.id%type,
+    tenant_id tenants.tenant_id%type,
     active tenants.active%type,
     created tenants.created_ts%type,
     name tenants.name%type,
@@ -13,14 +13,14 @@ as $$
 begin
     return query
     select
-        a.id,
+        a.tenant_id,
         a.active,
         a.created_ts,
         a.name,
         a.description
     from tenants.tenants a
     where
-        concat(a.name, a.description) like p_filter
+        concat(a.name, a.description) ilike p_filter
     ;
 end
 $$;

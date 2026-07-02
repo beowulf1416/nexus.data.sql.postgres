@@ -1,14 +1,14 @@
 create or replace procedure tenant_save(
-    p_tenant_id tenants.id%type,
+    p_tenant_id tenants.tenant_id%type,
     p_name tenants.name%type,
     p_description tenants.description%type
 )
 language plpgsql
 as $$
 begin
-    
+
     insert into tenants.tenants (
-        id,
+        tenant_id,
         name,
         description
     ) values (
@@ -16,7 +16,7 @@ begin
         p_name,
         p_description
     )
-    on conflict (id) do
+    on conflict (tenant_id) do
     update set
         name = p_name,
         description = p_description

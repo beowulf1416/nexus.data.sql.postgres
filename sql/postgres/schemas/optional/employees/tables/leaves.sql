@@ -28,7 +28,7 @@ unique (tenant_id, employee_id, leave_id)
 alter table leaves
 add constraint fk_leaves_1
 foreign key (tenant_id)
-references tenants.tenants (id)
+references tenants.tenants (tenant_id)
 on delete restrict
 ;
 

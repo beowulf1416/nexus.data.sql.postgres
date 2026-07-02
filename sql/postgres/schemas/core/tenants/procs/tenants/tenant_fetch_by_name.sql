@@ -2,7 +2,7 @@ create or replace function tenant_fetch_by_name(
     p_name tenants.name%type
 )
 returns table (
-    tenant_id tenants.id%type,
+    tenant_id tenants.tenant_id%type,
     active tenants.active%type,
     created tenants.created_ts%type,
     name tenants.name%type,
@@ -13,7 +13,7 @@ as $$
 begin
     return query
     select
-        a.id,
+        a.tenant_id,
         a.active,
         a.created_ts,
         a.name,

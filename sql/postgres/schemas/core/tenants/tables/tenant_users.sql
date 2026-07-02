@@ -15,7 +15,7 @@ primary key (tenant_id, user_id)
 alter table tenant_users
 add constraint fk_tenant_users_1
 foreign key (tenant_id)
-references tenants (id)
+references tenants (tenant_id)
 on delete restrict
 ;
 

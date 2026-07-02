@@ -2,7 +2,7 @@ create function tenant_user_fetch_tenants(
     p_user_id tenant_users.user_id%type
 )
 returns table (
-    tenant_id tenants.id%type,
+    tenant_id tenants.tenant_id%type,
     active tenants.active%type,
     created tenants.created_ts%type,
     name tenants.name%type,
@@ -14,14 +14,14 @@ begin
     return query
     select
         distinct
-        a.id,
+        a.tenant_id,
         a.active,
         a.created_ts,
         a.name,
         a.description
     from tenants.tenants a
         join tenants.tenant_users b
-            on a.id = b.tenant_id
+            on a.tenant_id = b.tenant_id
     where
         b.user_id = p_user_id
     ;

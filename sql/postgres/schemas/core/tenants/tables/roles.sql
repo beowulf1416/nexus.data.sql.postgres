@@ -32,6 +32,6 @@ unique (tenant_id, name)
 alter table roles
 add constraint fk_roles_1
 foreign key (tenant_id)
-references tenants (id)
+references tenants (tenant_id)
 on delete restrict
 ;

@@ -26,7 +26,7 @@ unique (tenant_id, user_id)
 alter table employees
 add constraint fk_employees_1
 foreign key (tenant_id)
-references tenants.tenants (id)
+references tenants.tenants (tenant_id)
 on delete restrict
 ;
 

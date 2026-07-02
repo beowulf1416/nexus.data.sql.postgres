@@ -1,5 +1,5 @@
 create or replace procedure tenant_set_active(
-    p_tenant_id tenants.id%type,
+    p_tenant_id tenants.tenant_id%type,
     p_active tenants.active%type
 )
 language plpgsql
@@ -8,8 +8,8 @@ begin
     update tenants.tenants set
         active = p_active
     where
-        id = p_tenant_id
-        and id <> uuid_nil()
+        tenant_id = p_tenant_id
+        and tenant_id <> uuid_nil()
     ;
 end
 $$;

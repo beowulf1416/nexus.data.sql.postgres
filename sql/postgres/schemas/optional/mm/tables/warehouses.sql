@@ -32,7 +32,7 @@ unique (tenant_id, warehouse_id)
 alter table warehouses
 add constraint fk_warehouses_1
 foreign key (tenant_id)
-references tenants.tenants (id)
+references tenants.tenants (tenant_id)
 on delete restrict
 ;
 

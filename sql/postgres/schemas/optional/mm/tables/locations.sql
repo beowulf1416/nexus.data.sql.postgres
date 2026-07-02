@@ -26,6 +26,6 @@ unique (tenant_id, location_id)
 alter table locations
 add constraint fk_locations_1
 foreign key (tenant_id)
-references tenants.tenants (id)
+references tenants.tenants (tenant_id)
 on delete restrict
 ;

@@ -1,8 +1,8 @@
 create or replace function tenants_fetch_by_id(
-    p_tenant_id tenants.id%type
+    p_tenant_id tenants.tenant_id%type
 )
 returns table (
-    tenant_id tenants.id%type,
+    tenant_id tenants.tenant_id%type,
     active tenants.active%type,
     created tenants.created_ts%type,
     name tenants.name%type,
@@ -13,14 +13,14 @@ as $$
 begin
     return query
     select
-        a.id,
+        a.tenant_id,
         a.active,
         a.created_ts,
         a.name,
         a.description
     from tenants.tenants a
     where
-        a.id = p_tenant_id
+        a.tenant_id = p_tenant_id
     ;
 end
 $$;

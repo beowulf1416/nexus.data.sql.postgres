@@ -16,7 +16,7 @@ create table businesses (
 
     constraint fk_businesses_1
     foreign key (tenant_id)
-    references tenants.tenants (id)
+    references tenants.tenants (tenant_id)
     on delete restrict
 );
 

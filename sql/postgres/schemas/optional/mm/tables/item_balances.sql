@@ -13,5 +13,3 @@ alter table item_balances
 add constraint pk_item_balances
 primary key (item_id)
 ;
-
-
