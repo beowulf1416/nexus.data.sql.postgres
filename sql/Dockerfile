@@ -1,4 +1,4 @@
-FROM postgres:latest
+FROM docker.io/library/postgres:latest
 LABEL maintainer="Ferd Tomale<beowulf1416@gmail.com>"
 
 
