@@ -5,7 +5,7 @@ create or replace function partners_fetch(
 returns table (
     partner_id partners.partner_id%type,
     active partners.active%type,
-    created_at partners.created_at%type,
+    created_ts partners.created_ts%type,
     business_name partners.business_name%type,
     description partners.description%type,
     first_name partners.first_name%type,
@@ -21,7 +21,7 @@ begin
     select
     	a.partner_id,
     	a.active,
-    	a.created_at,
+    	a.created_ts,
     	a.business_name,
     	a.description,
     	a.first_name,
