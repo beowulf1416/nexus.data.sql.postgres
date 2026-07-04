@@ -27,9 +27,12 @@ begin
 
 	v_partner_ids := array_append(v_partner_ids, v_partner_id);
 
-	call crm.partner_set_active(
+	call crm.partners_set_active(
 		v_partner_ids,
-		v_partner_id
+		true
 	);
 end;
 $$;
+
+call add_crm_partners();
+drop procedure add_crm_partners();
