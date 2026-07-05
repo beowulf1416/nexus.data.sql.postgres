@@ -3,8 +3,8 @@ create or replace procedure invoice_save(
     p_invoice_id invoices.invoice_id%type,
     p_invoice_type_id invoices.invoice_type_id%type,
     p_invoice_desc invoices.description%type,
-    p_due_date invoices.due_date_ts%type,
-    p_currency_id invoices.currency_id%type
+    p_due_date invoices.due_date_ts%type
+    -- p_currency_id invoices.currency_id%type
 )
 language plpgsql
 as $$
@@ -15,8 +15,8 @@ begin
         invoice_id,
         invoice_type_id,
         description,
-        due_date_ts,
-        currency_id
+        due_date_ts
+        -- currency_id
     )
     values (
         p_tenant_id,
@@ -24,15 +24,15 @@ begin
         p_invoice_id,
         p_invoice_type_id,
         p_invoice_desc,
-        p_due_date,
-        p_currency_id
+        p_due_date
+        -- p_currency_id
     )
     on conflict (invoice_id)
     do update set
         invoice_type_id = p_invoice_type_id,
         description = p_invoice_desc,
-        due_date_ts = p_due_date,
-        currency_id = p_currency_id
+        due_date_ts = p_due_date
+        -- currency_id = p_currency_id
     ;
 end
 $$;
