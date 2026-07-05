@@ -9,7 +9,7 @@ create table invoices (
 
     due_date_ts timestamp with time zone,
     description text,
-    billing_account_id uuid not null,
+    -- billing_account_id uuid not null,
     currency_id int not null,
 
     constraint pk_invoices

@@ -11,6 +11,7 @@ as $$
 begin
     insert into acctg.invoices (
         tenant_id,
+        active,
         invoice_id,
         invoice_type_id,
         description,
@@ -19,6 +20,7 @@ begin
     )
     values (
         p_tenant_id,
+        true,
         p_invoice_id,
         p_invoice_type_id,
         p_invoice_desc,
