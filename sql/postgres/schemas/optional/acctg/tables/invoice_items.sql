@@ -1,5 +1,6 @@
 create table invoice_items (
 	invoice_id uuid not null,
+	invoice_item_id serial not null,
 
 	description text not null,
 	amount money not null,

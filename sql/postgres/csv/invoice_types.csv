@@ -1,0 +1,13 @@
+type_id,name
+1,Sales Invoice
+2,Interest
+3,Purchase Return
+4,Purchase Invoice
+5,Commission
+6,Customer Return
+7,Payroll
+8,Expense Report
+9,Interim Invoice
+10,Final Invoice
+11,Past Due Invoice
+12,Recurring Invoice
