@@ -10,3 +10,9 @@ set schema 'common';
 
 -- currencies
 \ir procs/currencies/currencies_fetch_all.sql
+
+-- dimensions
+\ir procs/dimensions/dimensions_fetch_all.sql
+-- uom
+\ir procs/uom/uom_fetch_all.sql
+\ir procs/uom/uom_fetch_all_by_dimension_id.sql

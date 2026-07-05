@@ -1,6 +1,6 @@
 create table uom (
-    id bigint not null,
-    dimension_id int not null,
+    uom_id bigint not null,
+    dimension_id smallint not null,
     name varchar(100) not null,
     symbol varchar(10)
 );
@@ -11,7 +11,7 @@ comment on table uom is 'units of measure';
 
 alter table uom
 add constraint pk_uom
-primary key (id)
+primary key (uom_id)
 ;
 
 
