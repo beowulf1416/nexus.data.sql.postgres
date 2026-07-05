@@ -7,10 +7,10 @@ create table invoices (
     invoice_type_id int not null,
     invoice_id_seq int not null default nextval('acctg.seq_invoice_id'),
 
-    due_date timestamp with time zone default(now() at time zone 'utc'),
+    due_date_ts timestamp with time zone,
     description text,
     billing_account_id uuid not null,
-    currency int not null,
+    currency_id int not null,
 
     constraint pk_invoices
     primary key (invoice_id),
@@ -23,6 +23,11 @@ create table invoices (
     constraint fk_invoices_2
     foreign key (invoice_type_id)
     references invoice_types (invoice_type_id)
+    on delete restrict,
+
+    constraint fk_invoices_3
+    foreign key (currency_id)
+    references common.currencies (currency_id)
     on delete restrict
 );
 
