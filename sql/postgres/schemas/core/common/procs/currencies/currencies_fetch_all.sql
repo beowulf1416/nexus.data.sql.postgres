@@ -1,6 +1,6 @@
 create or replace function currencies_fetch_all()
 returns table (
-    id currencies.id%type,
+    currency_id currencies.currency_id%type,
     currency currencies.currency%type,
     unit_text currencies.unit_text%type,
     symbol currencies.symbol%type
@@ -10,7 +10,7 @@ as $$
 begin
     return query
     select
-        a.id,
+        a.currency_id,
         a.currency,
         a.unit_text,
         a.symbol

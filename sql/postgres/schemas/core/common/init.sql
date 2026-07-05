@@ -30,13 +30,13 @@ create sequence if not exists seq_currency as int
 ;
 
 alter table if exists common.currencies
-alter column id set default nextval('seq_currency')
+alter column currency_id set default nextval('seq_currency')
 ;
 
 \copy currencies (currency, unit_text, symbol) from '/docker-entrypoint-initdb.d/csv/currencies.csv' with delimiter ',' csv header quote '"';
 
 alter table if exists currencies
-alter column id drop default
+alter column currency_id drop default
 ;
 
 drop sequence seq_currency
