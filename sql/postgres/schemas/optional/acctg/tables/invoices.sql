@@ -2,7 +2,9 @@ create table invoices (
     invoice_id uuid not null,
     tenant_id uuid not null,
     active bool not null,
+
     created_ts timestamp with time zone not null default( now() at time zone 'utc'),
+    updated_ts timestamp with time zone not null default( now() at time zone 'utc'),
 
     invoice_type_id int not null,
     invoice_id_seq int not null default nextval('acctg.seq_invoice_id'),
