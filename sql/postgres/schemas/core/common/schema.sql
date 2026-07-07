@@ -3,3 +3,4 @@ set schema 'common';
 
 
 \ir types/email.sql
+\ir types/money.sql
