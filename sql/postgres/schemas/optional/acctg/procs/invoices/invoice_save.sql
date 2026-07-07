@@ -3,8 +3,8 @@ create or replace procedure invoice_save(
     p_invoice_id invoices.invoice_id%type,
     p_invoice_type_id invoices.invoice_type_id%type,
     p_invoice_desc invoices.description%type,
-    p_due_date invoices.due_date_ts%type
-    -- p_currency_id invoices.currency_id%type
+    p_due_date invoices.due_date_ts%type,
+    p_items acctg.invoice_item_type[]
 )
 language plpgsql
 as $$
@@ -33,6 +33,30 @@ begin
         description = p_invoice_desc,
         due_date_ts = p_due_date
         -- currency_id = p_currency_id
+    ;
+
+
+    delete from acctg.invoice_items
+    where
+        invoice_id = p_invoice_id
+    ;
+
+    insert into acctg.invoice_items (
+        invoice_id,
+        invoice_item_id,
+        description,
+        quantity,
+        unit_price,
+        currency_id
+    )
+    select
+        p_invoice_id,
+        a.invoice_item_id,
+        a.description,
+        a.quantity,
+        a.unit_price,
+        a.currency_id
+    from unnest(p_items) a
     ;
 end
 $$;

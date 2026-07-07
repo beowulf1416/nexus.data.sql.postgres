@@ -3,7 +3,7 @@ create table invoice_items (
 	invoice_item_id uuid not null,
 	active bool not null default true,
     created_ts timestamp with time zone not null default( now() at time zone 'utc'),
-    udpated_ts timestamp with time zone not null default( now() at time zone 'utc'),
+    -- updated_ts timestamp with time zone not null default( now() at time zone 'utc'),
 
 	description text not null,
 	quantity decimal(12,4) not null,
@@ -13,7 +13,10 @@ create table invoice_items (
 	currency_id int not null,
 
 	constraint pk_invoice_items
-	primary key (invoice_id, invoice_item_id),
+	primary key (invoice_item_id),
+
+	constraint u_invoice_items_1
+	unique (invoice_id, invoice_item_id),
 
 	constraint fk_invoice_items_1
 	foreign key (invoice_id)
