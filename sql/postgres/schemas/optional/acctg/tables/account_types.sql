@@ -1,3 +1,4 @@
+-- https://www.principlesofaccounting.com/account-types/
 create table account_types (
     account_type_id smallint not null,
     name varchar(100),

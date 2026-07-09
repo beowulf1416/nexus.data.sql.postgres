@@ -6,7 +6,7 @@ create table invoices (
     created_ts timestamp with time zone not null default( now() at time zone 'utc'),
     updated_ts timestamp with time zone not null default( now() at time zone 'utc'),
 
-    invoice_type_id int not null,
+    invoice_type_id smallint not null,
     invoice_id_seq int not null default nextval('acctg.seq_invoice_id'),
 
     due_date_ts timestamp with time zone,

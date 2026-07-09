@@ -1,5 +1,5 @@
 create table invoice_types (
-  invoice_type_id serial,
+  invoice_type_id smallint,
   name varchar(100) not null,
 
   constraint pk_invoice_types
