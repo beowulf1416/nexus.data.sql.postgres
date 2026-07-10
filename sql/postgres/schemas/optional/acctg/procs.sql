@@ -3,6 +3,7 @@ set schema 'acctg';
 
 \ir procs/account_types/account_types_fetch.sql
 \ir procs/account_categories/account_categories_fetch.sql
+\ir procs/accounts/accounts_fetch_all.sql
 
 \ir procs/invoice_types/invoice_types_fetch.sql
 
