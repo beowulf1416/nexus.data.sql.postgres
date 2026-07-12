@@ -10,6 +10,14 @@ create or replace procedure account_save(
 language plpgsql
 as $$
 begin
+    if p_account_type_id = 0 then
+        raise exception 'Account type ID cannot be 0.';
+    end if;
+
+    if p_account_category_id = 0 then
+        raise exception 'Account category ID cannot be 0.';
+    end if;
+
     insert into acctg.accounts (
         tenant_id,
         account_id,
