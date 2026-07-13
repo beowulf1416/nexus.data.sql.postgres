@@ -1,5 +1,6 @@
 create or replace function accounts_fetch(
     p_tenant_id uuid,
+    p_account_type_id accounts.account_type_id%type default null,
     p_filter text default '%'
 )
 returns table(
@@ -26,6 +27,10 @@ begin
     from acctg.accounts a
     where
         a.tenant_id = p_tenant_id
+        and (
+            p_account_type_id is not null
+            and a.account_type_id = p_account_type_id
+            )
         and a.name ilike p_filter
     ;
 end;
