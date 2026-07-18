@@ -18,12 +18,12 @@ begin
         description
     ) values (
         p_tenant_id,
-        p_name,
+        lower(p_name),
         p_description
     )
     on conflict (tenant_id) do
     update set
-        name = p_name,
+        name = lower(p_name),
         description = p_description
     ;
 
@@ -52,11 +52,11 @@ begin
         a.description,
         ''
     from unnest(array[
-        (acctg_asset_id, 1::smallint, 1::smallint, 'Asset'::text, 'Asset'::text),
-        (acctg_liability_id, 2::smallint, 1::smallint, 'Liability'::text, 'Liability'::text),
-        (acctg_equity_id, 3::smallint, 1::smallint, 'Equity'::text, 'Equity'::text),
-        (acctg_expense_id, 4::smallint, 1::smallint, 'Expense'::text, 'Expense'::text),
-        (acctg_income_id, 5::smallint, 1::smallint, 'Income'::text, 'Income'::text)
+        (acctg_asset_id, 1::smallint, 1::smallint, lower('Asset')::text, 'Asset'::text),
+        (acctg_liability_id, 2::smallint, 1::smallint, lower('Liability')::text, 'Liability'::text),
+        (acctg_equity_id, 3::smallint, 1::smallint, lower('Equity')::text, 'Equity'::text),
+        (acctg_expense_id, 4::smallint, 1::smallint, lower('Expense')::text, 'Expense'::text),
+        (acctg_income_id, 5::smallint, 1::smallint, lower('Income')::text, 'Income'::text)
     ]) as a (
         account_id uuid,
         account_type_id smallint,
