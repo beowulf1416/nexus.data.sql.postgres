@@ -6,6 +6,8 @@ set schema 'acctg';
 \ir procs/accounts/accounts_fetch_all.sql
 \ir procs/accounts/accounts_fetch_by_type.sql
 \ir procs/accounts/accounts_fetch.sql
+\ir procs/accounts/account_fetch.sql
+\ir procs/accounts/account_fetch_children.sql
 
 \ir procs/accounts/account_save.sql
 
