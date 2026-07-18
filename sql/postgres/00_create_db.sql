@@ -48,6 +48,7 @@ create extension if not exists "uuid-ossp";
 \ir schemas/core/files/procs.sql
 
 \ir schemas/optional/crm/procs.sql
+\ir schemas/optional/organizations/procs.sql
 \ir schemas/optional/mm/procs.sql
 \ir schemas/optional/user_registration/procs.sql
 \ir schemas/optional/bi/procs.sql
