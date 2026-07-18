@@ -33,7 +33,7 @@ begin
         p_account_type_id,
         p_account_category_id,
         p_code,
-        p_name,
+        lower(p_name),
         p_description
     )
     on conflict (account_id)
@@ -41,7 +41,7 @@ begin
         account_type_id = p_account_type_id,
         account_category_id = p_account_category_id,
         code = p_code,
-        name = p_name,
+        name = lower(p_name),
         description = p_description
     ;
 end;

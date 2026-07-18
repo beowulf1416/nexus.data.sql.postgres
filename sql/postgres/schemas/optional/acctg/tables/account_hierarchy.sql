@@ -14,9 +14,16 @@ create table account_hierarchy (
 
     constraint fk_account_hierarchy_1
     foreign key (tenant_id)
-    references tenants.tenants (tenant_id),
+    references tenants.tenants (tenant_id)
+    on delete restrict,
 
     constraint fk_account_hierarchy_2
     foreign key (account_id)
     references accounts (account_id)
+    on delete restrict,
+
+    constraint fk_account_hierarchy_3
+    foreign key (parent_account_id)
+    references accounts (account_id)
+    on delete restrict
 );
