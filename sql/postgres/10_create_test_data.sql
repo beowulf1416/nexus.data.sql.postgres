@@ -2,6 +2,9 @@
 \ir ./test_data/02_user_01.sql
 \ir ./test_data/03_role_01.sql
 
+-- organizations
+\ir ./test_data/organizations/tenant_01_add_organizations.sql
+
 -- acctg
 \ir ./test_data/acctg/add_accounts.sql
 

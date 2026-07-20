@@ -2,7 +2,8 @@ create or replace procedure organization_save(
     p_tenant_id organizations.tenant_id%type,
     p_org_id organizations.org_id%type,
     p_name organizations.name%type,
-    p_description organizations.description%type
+    p_description organizations.description%type,
+    p_parent_org_id organizations.org_id%type
 )
 language plpgsql
 as $$
@@ -26,6 +27,20 @@ begin
         active = true,
         name = p_name,
         description = p_description
+    ;
+
+    insert into organizations.org_tree (
+        tenant_id,
+        org_id,
+        parent_org_id
+    ) values (
+        p_tenant_id,
+        p_org_id,
+        p_parent_org_id
+    )
+    on conflict (org_id)
+    do update set
+        parent_org_id = p_parent_org_id
     ;
 end
 $$;

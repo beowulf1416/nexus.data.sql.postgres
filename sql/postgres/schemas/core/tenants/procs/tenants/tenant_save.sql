@@ -66,6 +66,23 @@ begin
     )
     on conflict (account_id) do nothing
     ;
+
+    -- insert root organization
+    insert into organizations.organizations (
+        tenant_id,
+        org_id,
+        active,
+        name,
+        description
+    )
+    values (
+        p_tenant_id,
+        p_tenant_id,
+        true,
+        'root',
+        'root organization'
+    )
+    ;
 end
 $$;
 
