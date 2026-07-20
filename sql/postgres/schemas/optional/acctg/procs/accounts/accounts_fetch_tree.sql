@@ -34,7 +34,7 @@ begin
             c.account_id,
             c.name,
             e.level + 1 as level,
-            e.path || '.' || c.name as path,
+            e.path || '.' || c.name::text as path,
             d.parent_account_id
         from acctg.accounts c
             join acctg.account_hierarchy d
