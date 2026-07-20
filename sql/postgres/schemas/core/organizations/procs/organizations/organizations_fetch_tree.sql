@@ -1,4 +1,4 @@
-create or replace function organizations_fetch_all(
+create or replace function organizations_fetch_tree(
     p_tenant_id organizations.tenant_id%type
 )
 returns table (
@@ -69,4 +69,4 @@ begin
 end
 $$;
 
-comment on function organizations_fetch_all is 'fetch all organizations for this tenant';
+comment on function organizations_fetch_tree is 'fetch all organizations for this tenant';
