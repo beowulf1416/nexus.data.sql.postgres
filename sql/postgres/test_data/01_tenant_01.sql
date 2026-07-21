@@ -1,3 +1,5 @@
+set search_path to tenants, acctg, public;
+
 create procedure create_tenant_01()
 language plpgsql
 as $$
@@ -7,12 +9,13 @@ declare
     v_role_01 uuid;
 begin
 	v_tenant_id := public.gen_random_uuid();
+	v_tenant_version := 0;
 
 	call tenants.tenant_save(
 		v_tenant_id,
 		'tenant_01',
 		'tenant_01',
-		0
+		v_tenant_version
 	);
 
 	select
