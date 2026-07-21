@@ -1,7 +1,8 @@
 create or replace procedure tenant_save(
     p_tenant_id tenants.tenant_id%type,
     p_name tenants.name%type,
-    p_description tenants.description%type
+    p_description tenants.description%type,
+    p_version tenants.version%type
 )
 language plpgsql
 as $$
@@ -11,6 +12,7 @@ declare
     acctg_equity_id acctg.accounts.account_id%type;
     acctg_expense_id acctg.accounts.account_id%type;
     acctg_income_id acctg.accounts.account_id%type;
+    v_rows_affected int;
 begin
     insert into tenants.tenants (
         tenant_id,
@@ -24,8 +26,17 @@ begin
     on conflict (tenant_id) do
     update set
         name = lower(p_name),
-        description = p_description
+        description = p_description,
+        updated_ts = now() at time zone 'utc',
+        version = tenants.tenants.version + 1
+    where
+        tenants.tenants.version = p_version
     ;
+
+    get diagnostics v_rows_affected = ROW_COUNT;
+    if v_rows_affected <> 1 then
+        raise exception 'data has been modified by another session';
+    end if;
 
     -- insert this tenant skeleton accounting accounts
     acctg_asset_id := public.gen_random_uuid();
@@ -64,7 +75,8 @@ begin
         name varchar(100),
         description varchar(300)
     )
-    on conflict (account_id) do nothing
+    on conflict (tenant_id, name)
+    do nothing
     ;
 
     -- insert root organization
@@ -82,6 +94,8 @@ begin
         'root',
         'root organization'
     )
+    on conflict (tenant_id, org_id)
+    do nothing
     ;
 end
 $$;

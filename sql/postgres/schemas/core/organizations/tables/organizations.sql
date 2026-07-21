@@ -12,6 +12,9 @@ create table organizations (
     constraint u_organizations_1
     unique (tenant_id, org_id),
 
+    constraint u_organizations_2
+    unique (tenant_id, name),
+
     constraint fk_organizations_1
     foreign key (tenant_id)
     references tenants.tenants (tenant_id)

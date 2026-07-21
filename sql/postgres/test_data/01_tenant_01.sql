@@ -3,6 +3,7 @@ language plpgsql
 as $$
 declare
     v_tenant_id uuid;
+    v_tenant_version int;
     v_role_01 uuid;
 begin
 	v_tenant_id := public.gen_random_uuid();
@@ -10,7 +11,20 @@ begin
 	call tenants.tenant_save(
 		v_tenant_id,
 		'tenant_01',
-		'tenant_01'
+		'tenant_01',
+		0
+	);
+
+	select
+	    version into v_tenant_version
+	from tenants.tenants_fetch_by_id(v_tenant_id)
+	;
+
+	call tenants.tenant_save(
+		v_tenant_id,
+		'tenant_01',
+		'tenant_01 updated',
+		v_tenant_version
 	);
 
 	call tenants.tenant_set_active(

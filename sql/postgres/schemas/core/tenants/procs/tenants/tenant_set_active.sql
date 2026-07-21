@@ -6,7 +6,8 @@ language plpgsql
 as $$
 begin
     update tenants.tenants set
-        active = p_active
+        active = p_active,
+        updated_ts = now() at time zone 'utc'
     where
         tenant_id = p_tenant_id
         and tenant_id <> uuid_nil()
