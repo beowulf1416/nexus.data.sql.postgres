@@ -4,7 +4,9 @@ create function tenant_user_fetch_tenants(
 returns table (
     tenant_id tenants.tenant_id%type,
     active tenants.active%type,
+    version tenants.version%type,
     created tenants.created_ts%type,
+    updated tenants.updated_ts%type,
     name tenants.name%type,
     description tenants.description%type
 )
@@ -16,7 +18,9 @@ begin
         distinct
         a.tenant_id,
         a.active,
+        a.version,
         a.created_ts,
+        a.updated_ts,
         a.name,
         a.description
     from tenants.tenants a
