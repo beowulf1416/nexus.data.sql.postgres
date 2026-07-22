@@ -21,17 +21,19 @@ begin
 	call organizations.organization_save(
 	    v_tenant_01_id,
 		v_child_01_id,
+		v_tenant_01_id,
 		'child_01',
 		'child_01',
-		v_tenant_01_id
+		0
 	);
 
 	call organizations.organization_save(
 	    v_tenant_01_id,
 		v_child_02_id,
+		v_tenant_01_id,
 		'child_02',
 		'child_02',
-		v_tenant_01_id
+		0
 	);
 
 
@@ -39,9 +41,10 @@ begin
 	call organizations.organization_save(
 	    v_tenant_01_id,
 		v_child_01_01_id,
+		v_child_01_id,
 		'child_01_01',
 		'child_01_01',
-		v_child_01_id
+		0
 	);
 end
 
