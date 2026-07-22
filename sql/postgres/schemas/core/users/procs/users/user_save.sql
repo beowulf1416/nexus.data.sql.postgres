@@ -4,10 +4,13 @@ create or replace procedure user_save(
     p_middle_nmae users.middle_name%type,
     p_last_name users.last_name%type,
     p_prefix users.prefix%type,
-    p_suffix users.suffix%type
+    p_suffix users.suffix%type,
+    p_version users.version%type
 )
 language plpgsql
 as $$
+declare
+    v_rows_affected int;
 begin
     insert into users.users (
         id,
@@ -31,7 +34,15 @@ begin
         last_name = p_last_name,
         prefix = p_prefix,
         suffix = p_suffix
+    where
+        users.version = p_version
     ;
+
+    get diagnostics v_rows_affected = ROW_COUNT;
+    if v_rows_affected <> 1 then
+        raise exception 'data has been modified by another session';
+    end if;
+
 end
 $$;
 

@@ -18,7 +18,8 @@ begin
         'user_01',
         'user_01',
         'mr',
-        'phd'
+        'phd',
+        0
     );
 
     call users.users_set_active(
