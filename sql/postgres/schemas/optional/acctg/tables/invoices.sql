@@ -2,6 +2,7 @@ create table invoices (
     invoice_id uuid not null,
     tenant_id uuid not null,
     active bool not null,
+    version int not null default 0,
 
     created_ts timestamp with time zone not null default( now() at time zone 'utc'),
     updated_ts timestamp with time zone not null default( now() at time zone 'utc'),

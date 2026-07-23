@@ -4,10 +4,13 @@ create or replace procedure invoice_save(
     p_invoice_type_id invoices.invoice_type_id%type,
     p_invoice_desc invoices.description%type,
     p_due_date invoices.due_date_ts%type,
-    p_items acctg.invoice_item_type[]
+    p_items acctg.invoice_item_type[],
+    p_version invoices.version%type
 )
 language plpgsql
 as $$
+declare
+    v_rows_affected int;
 begin
     insert into acctg.invoices (
         tenant_id,
@@ -33,8 +36,15 @@ begin
         description = p_invoice_desc,
         due_date_ts = p_due_date
         -- currency_id = p_currency_id
+        version = acctg.invoices.version + 1
+    where
+        version = p_version
     ;
 
+    get diagnostics v_rows_affected = ROW_COUNT;
+    if v_rows_affected <> 1 then
+        raise exception 'data has been modified';
+    end if;
 
     delete from acctg.invoice_items
     where
