@@ -25,7 +25,9 @@ grant usage on schema users to app_user;
 grant select, insert, update on all tables in schema users to app_user;
 
 grant usage on schema acctg to app_user;
+grant usage on all sequences in schema acctg to app_user;
 grant select, insert, update on all tables in schema acctg to app_user;
+grant delete on acctg.invoice_items to app_user;
 
 grant usage on schema crm to app_user;
 grant select, insert, update on all tables in schema crm to app_user;
