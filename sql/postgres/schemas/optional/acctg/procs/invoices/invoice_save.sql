@@ -19,7 +19,6 @@ begin
         invoice_type_id,
         description,
         due_date_ts
-        -- currency_id
     )
     values (
         p_tenant_id,
@@ -34,11 +33,11 @@ begin
     do update set
         invoice_type_id = p_invoice_type_id,
         description = p_invoice_desc,
-        due_date_ts = p_due_date
-        -- currency_id = p_currency_id
-        version = acctg.invoices.version + 1
+        due_date_ts = p_due_date,
+        version = acctg.invoices.version + 1,
+        updated_ts = now() at time zone 'utc'
     where
-        version = p_version
+        acctg.invoices.version = p_version
     ;
 
     get diagnostics v_rows_affected = ROW_COUNT;
