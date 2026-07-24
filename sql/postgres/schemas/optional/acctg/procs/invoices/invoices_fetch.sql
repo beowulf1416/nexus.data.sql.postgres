@@ -9,8 +9,11 @@ create or replace function acctg.invoices_fetch(
     updated_ts invoices.updated_ts%type,
     invoice_type_id invoices.invoice_type_id%type,
     invoice_id_seq invoices.invoice_id_seq%type,
+    account_id invoices.account_id%type,
+    org_id invoices.org_id%type,
+    partner_id invoices.partner_id%type,
     due_date_ts invoices.due_date_ts%type,
-    description text
+    description invoices.description%type
 )
 language plpgsql
 as $$
@@ -24,6 +27,9 @@ begin
         a.updated_ts,
         a.invoice_type_id,
         a.invoice_id_seq,
+        a.account_id,
+        a.org_id,
+        a.partner_id,
         a.due_date_ts,
         a.description
     from acctg.invoices a

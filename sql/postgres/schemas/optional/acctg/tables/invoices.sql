@@ -12,8 +12,10 @@ create table invoices (
 
     due_date_ts timestamp with time zone,
     description text not null,
-    -- billing_account_id uuid not null,
-    -- currency_id int not null,
+
+    account_id uuid not null,
+    org_id uuid not null,
+    partner_id uuid not null,
 
     constraint pk_invoices
     primary key (invoice_id),
@@ -26,12 +28,22 @@ create table invoices (
     constraint fk_invoices_2
     foreign key (invoice_type_id)
     references invoice_types (invoice_type_id)
-    on delete restrict
+    on delete restrict,
 
-    -- constraint fk_invoices_3
-    -- foreign key (currency_id)
-    -- references common.currencies (currency_id)
-    -- on delete restrict
+    constraint fk_invoices_3
+    foreign key (account_id)
+    references acctg.accounts (account_id)
+    on delete restrict,
+
+    constraint fk_invoices_4
+    foreign key (org_id)
+    references organizations.organizations (org_id)
+    on delete restrict,
+
+    constraint fk_invoices_5
+    foreign key (partner_id)
+    references crm.partners (partner_id)
+    on delete restrict
 );
 
 comment on table invoices is 'invoice details';
