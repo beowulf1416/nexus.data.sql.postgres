@@ -57,27 +57,66 @@ begin
         raise exception 'data has been modified';
     end if;
 
-    delete from acctg.invoice_items
-    where
-        invoice_id = p_invoice_id
-    ;
+    -- delete from acctg.invoice_items
+    -- where
+    --     invoice_id = p_invoice_id
+    -- ;
 
-    insert into acctg.invoice_items (
-        invoice_id,
-        invoice_item_id,
-        description,
-        quantity,
-        unit_price,
-        currency_id
-    )
-    select
-        p_invoice_id,
-        a.invoice_item_id,
-        a.description,
-        a.quantity,
-        a.unit_price,
-        a.currency_id
-    from unnest(p_items) a
+    -- insert into acctg.invoice_items (
+    --     invoice_id,
+    --     invoice_item_id,
+    --     description,
+    --     quantity,
+    --     unit_price,
+    --     currency_id
+    -- )
+    -- select
+    --     p_invoice_id,
+    --     a.invoice_item_id,
+    --     a.description,
+    --     a.quantity,
+    --     a.unit_price,
+    --     a.currency_id
+    -- from unnest(p_items) a
+    -- ;
+
+    merge into acctg.invoice_items dest
+    using (
+        select
+            a.*
+        from unnest(p_items) a
+    ) src
+    on dest.invoice_id = p_invoice_id
+        and dest.invoice_item_id = src.invoice_item_id
+    when matched and dest.version = src.version then
+        update set
+            description = src.description,
+            quantity = src.quantity,
+            unit_price = src.unit_price,
+            -- total = src.quantity * src.unit_price,
+            currency_id = src.currency_id,
+            version = dest.version + 1,
+            updated_ts = now() at time zone 'utc'
+    when not matched by target then
+        insert (
+            invoice_id,
+            invoice_item_id,
+            description,
+            quantity,
+            unit_price,
+            -- total,
+            currency_id
+        ) values (
+            p_invoice_id,
+            src.invoice_item_id,
+            src.description,
+            src.quantity,
+            src.unit_price,
+            -- src.quantity * src.unit_price,
+            src.currency_id
+        )
+    when not matched by source then
+        delete
     ;
 end
 $$;

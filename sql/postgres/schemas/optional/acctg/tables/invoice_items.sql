@@ -2,8 +2,9 @@ create table invoice_items (
 	invoice_id uuid not null,
 	invoice_item_id uuid not null,
 	active bool not null default true,
+	version int not null default 0,
     created_ts timestamp with time zone not null default( now() at time zone 'utc'),
-    -- updated_ts timestamp with time zone not null default( now() at time zone 'utc'),
+    updated_ts timestamp with time zone not null default( now() at time zone 'utc'),
 
 	description text not null,
 	quantity decimal(12,4) not null,
